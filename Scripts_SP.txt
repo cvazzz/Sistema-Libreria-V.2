@@ -1,0 +1,177 @@
+USE [miSistemaCom]
+GO
+
+/****** Object:  StoredProcedure [dbo].[AgregarJefeTienda]    Script Date: 14/10/2023 22:26:15 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[AgregarJefeTienda]
+    @nombre varchar(50),
+    @apellidoPaterno varchar(50),
+    @apellidoMaterno varchar(50),
+    @dni varchar(8)
+AS
+BEGIN
+    INSERT INTO JefeTienda (nombre, apellidoPaterno, apellidoMaterno, dni)
+    VALUES (@nombre, @apellidoPaterno, @apellidoMaterno, @dni);
+END
+GO
+
+
+USE [miSistemaCom]
+GO
+
+/****** Object:  StoredProcedure [dbo].[BuscarJefeTiendaPorApellidoMaterno]    Script Date: 14/10/2023 22:30:58 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[BuscarJefeTiendaPorApellidoMaterno]
+    @apellidoMaterno varchar(50)
+AS
+BEGIN
+    SELECT * FROM JefeTienda WHERE apellidoMaterno = @apellidoMaterno;
+END
+GO
+
+USE [miSistemaCom]
+GO
+
+/****** Object:  StoredProcedure [dbo].[BuscarJefeTiendaPorApellidoPaterno]    Script Date: 14/10/2023 22:31:15 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[BuscarJefeTiendaPorApellidoPaterno]
+    @apellidoPaterno varchar(50)
+AS
+BEGIN
+    SELECT * FROM JefeTienda WHERE apellidoPaterno = @apellidoPaterno;
+END
+GO
+
+USE [miSistemaCom]
+GO
+
+/****** Object:  StoredProcedure [dbo].[BuscarJefeTiendaPorApellidos]    Script Date: 14/10/2023 22:31:28 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[BuscarJefeTiendaPorApellidos]
+    @apellidoPaterno varchar(50),
+    @apellidoMaterno varchar(50)
+AS
+BEGIN
+    SELECT * FROM JefeTienda
+    WHERE apellidoPaterno = @apellidoPaterno AND apellidoMaterno = @apellidoMaterno;
+END
+GO
+
+USE [miSistemaCom]
+GO
+
+/****** Object:  StoredProcedure [dbo].[BuscarJefeTiendaPorCodigo]    Script Date: 14/10/2023 22:31:37 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[BuscarJefeTiendaPorCodigo]
+    @codigo int
+AS
+BEGIN
+    SELECT * FROM JefeTienda WHERE codigo = @codigo;
+END
+GO
+
+USE [miSistemaCom]
+GO
+
+/****** Object:  StoredProcedure [dbo].[BuscarJefeTiendaPorNombre]    Script Date: 14/10/2023 22:31:45 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[BuscarJefeTiendaPorNombre]
+    @nombre varchar(50)
+AS
+BEGIN
+    SELECT * FROM JefeTienda WHERE nombre = @nombre;
+END
+GO
+
+USE [miSistemaCom]
+GO
+
+/****** Object:  StoredProcedure [dbo].[EditarJefeTienda]    Script Date: 14/10/2023 22:32:03 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[EditarJefeTienda]
+    @codigo int,
+    @nombre varchar(50),
+    @apellidoPaterno varchar(50),
+    @apellidoMaterno varchar(50),
+    @dni varchar(8)
+AS
+BEGIN
+    UPDATE JefeTienda
+    SET nombre = @nombre,
+        apellidoPaterno = @apellidoPaterno,
+        apellidoMaterno = @apellidoMaterno,
+        dni = @dni
+    WHERE codigo = @codigo;
+END
+GO
+
+USE [miSistemaCom]
+GO
+
+/****** Object:  StoredProcedure [dbo].[EliminarJefeTienda]    Script Date: 14/10/2023 22:32:13 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[EliminarJefeTienda]
+    @codigo int
+AS
+BEGIN
+    DELETE FROM JefeTienda WHERE codigo = @codigo;
+END
+GO
+
+USE [miSistemaCom]
+GO
+
+/****** Object:  StoredProcedure [dbo].[MostrarJefesTienda]    Script Date: 14/10/2023 22:32:22 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[MostrarJefesTienda]
+AS
+BEGIN
+    SELECT * FROM JefeTienda;
+END
+GO
+
